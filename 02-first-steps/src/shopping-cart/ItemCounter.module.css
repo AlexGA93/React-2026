@@ -1,0 +1,24 @@
+.item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+.itemSpan {
+  display: flex;
+  /* flex-direction: row; */
+  flex-wrap: nowrap;
+  /* justify-content: center; */
+  font-weight: bold;
+  width: 150px;
+}
+
+.overMin {
+  color: green;
+}
+.underMin {
+  color: red;
+}
