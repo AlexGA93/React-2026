@@ -33,7 +33,10 @@ const ItemCounter: React.FC<Props> = ({ name, quantity }: Props) => {
         if (operation === 'inc') {
             setCount(count + 1); // Incrementa el contador en 1
         } else {
-            setCount(count - 1); // Decrementa el contador en 1
+            if (count > 0) {
+                setCount(count - 1); // Decrementa el contador en 1
+            }
+            
         }
     };
 
