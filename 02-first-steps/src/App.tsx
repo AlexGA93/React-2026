@@ -23,10 +23,19 @@ const shoppingCart: ItemCart[] = [
 export default function App() {
 
   return (
-    <>
-      <h1>Carrito de Compras</h1>
-      { shoppingCart.map(item => <ItemCounter key={item.name} name={item.name} quantity={item.quantity} />) }
-    </>
+    <main data-testid="app-root">
+      <h1 data-testid="app-title">Carrito de Compras</h1>
+      <section data-testid="app-items">
+        { shoppingCart.map((item, index) => (
+          <ItemCounter
+            key={item.name}
+            name={item.name}
+            quantity={item.quantity}
+            testIdPrefix={`item-counter-${index}`}
+          />
+        )) }
+      </section>
+    </main>
   )
 }
 

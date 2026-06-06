@@ -9,13 +9,14 @@ interface Props {
     name: string;
     // valor opcional
     quantity?: number;
+    testIdPrefix?: string;
 }
 
 type Operation = 'inc' | 'dec';
 
 const MIN_QUANTITY = 3;
 
-const ItemCounter: React.FC<Props> = ({ name, quantity }: Props) => {
+const ItemCounter: React.FC<Props> = ({ name, quantity, testIdPrefix = 'item-counter' }: Props) => {
 
     /**
      * llamamos a hook de estado local que almacena como valor inicial la cantidad del producto, o 0 si no se proporciona. 
@@ -41,15 +42,15 @@ const ItemCounter: React.FC<Props> = ({ name, quantity }: Props) => {
     };
 
   return (
-      <section className={ styles.item }>
-        <span className={ styles.itemSpan }>{ name }</span>
-        <button onClick={() => handleClick('inc')}>+1</button>
-          <span className={styles.itemSpan}>
-              <div className={ count >= MIN_QUANTITY ? styles.overMin : styles.underMin }>
+      <section className={ styles.item } data-testid={`${testIdPrefix}-section`}>
+        <span className={ styles.itemSpan } data-testid={`${testIdPrefix}-name`}>{ name }</span>
+        <button onClick={() => handleClick('inc')} data-testid={`${testIdPrefix}-increment`}>+1</button>
+          <span className={styles.itemSpan} data-testid={`${testIdPrefix}-value-wrapper`}>
+              <div className={ count >= MIN_QUANTITY ? styles.overMin : styles.underMin } data-testid={`${testIdPrefix}-value`}>
                   { count }
               </div>
           </span>
-        <button onClick={() => handleClick('dec')}>-1</button>  
+        <button onClick={() => handleClick('dec')} data-testid={`${testIdPrefix}-decrement`}>-1</button>  
     </section>
   )
 }

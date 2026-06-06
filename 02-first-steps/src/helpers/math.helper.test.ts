@@ -23,12 +23,12 @@ describe("add", () => {
     expect(result).toBe(4);
   });
   
-    test("add should return the sum of two numbers with the modification", () => {
-    const a = 2;
-    const b = 2;
-    const result = add(a, b);
-    expect(result).toBe(5); // Esto fallará debido a la modificación en la función add
-    });
+    // test("add should return the sum of two numbers with the modification", () => {
+    // const a = 2;
+    // const b = 2;
+    // const result = add(a, b);
+    // expect(result).toBe(5); // Esto fallará debido a la modificación en la función add
+    // });
     
     test("add should return the sum of two negative numbers", () => {
     const a = -2;

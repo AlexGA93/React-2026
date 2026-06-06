@@ -4,7 +4,7 @@
 
 export const add = (a: number, b: number): number => {
     // anadimos modificacion para que la funcion tenga un fallo y asi probar la prueba unitaria
-    ++a;
+    // ++a;
     return a + b;
 };
 
