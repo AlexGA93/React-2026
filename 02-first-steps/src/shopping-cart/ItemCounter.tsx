@@ -31,6 +31,7 @@ const ItemCounter: React.FC<Props> = ({ name, quantity, testIdPrefix = 'item-cou
      * @description La función handleClick se encarga de actualizar el estado del contador en función de la operación que se le indique. Si la operación es 'inc', incrementa el contador en 1, y si es 'dec', lo decrementa en 1.
      */
     const handleClick = (operation: Operation) => {
+        console.log("boton pulsado");
         if (operation === 'inc') {
             setCount(count + 1); // Incrementa el contador en 1
         } else {
@@ -46,8 +47,8 @@ const ItemCounter: React.FC<Props> = ({ name, quantity, testIdPrefix = 'item-cou
         <span className={ styles.itemSpan } data-testid={`${testIdPrefix}-name`}>{ name }</span>
         <button onClick={() => handleClick('inc')} data-testid={`${testIdPrefix}-increment`}>+1</button>
           <span className={styles.itemSpan} data-testid={`${testIdPrefix}-value-wrapper`}>
-              <div className={ count >= MIN_QUANTITY ? styles.overMin : styles.underMin } data-testid={`${testIdPrefix}-value`}>
-                  { count }
+              <div data-testid={`${testIdPrefix}-value`}>
+                  <p className={count >= MIN_QUANTITY ? styles.overMin : styles.underMin}>{ count }</p>
               </div>
           </span>
         <button onClick={() => handleClick('dec')} data-testid={`${testIdPrefix}-decrement`}>-1</button>  
