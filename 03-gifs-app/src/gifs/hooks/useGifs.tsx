@@ -42,8 +42,8 @@ export const useGifs = () => {
     }
 
     const gifs = await getGifsByQuery(term);
-
     setGifs(gifs);
+    gifsCache.current[term] = gifs;
   };
 
   // funcion encargada de recoger el valor de busqueda del input para gestion
