@@ -15,7 +15,7 @@ export const useGifs = () => {
 
     // almacenamiento de busquedas anteriores
     /**
-     * ! PROBLEMA: enter renders el espacio de memoria de un objeto simple se reasigna con lo que se puede perder informacion.
+     * ! PROBLEMA: entre renders el espacio de memoria de un objeto simple se reasigna con lo que se puede perder informacion.
      * 
      * ! hay dos opciones: O lo sacamos del ciclo de vida del componente definiendolo fuera
      * ! o crear un hook 'useRef' manteniendolo en el ciclo de vida de componente
