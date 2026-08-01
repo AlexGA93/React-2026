@@ -4,7 +4,8 @@ import { createRoot } from 'react-dom/client'
 // import { HooksApp } from './HooksApp'
 
 import './index.css'
-import { TasksApp } from './06-useReducer/TasksApp'
+// import { TasksApp } from './06-useReducer_TasksApp/TasksApp'
+import { ScrambleWords } from './07-useReducer_ScrambleWords/ScrambleWords'
 // import { TrafficLight } from './01-useState/TrafficLight'
 // import { TrafficLightWithEffect } from './02-useEffect/TrafficLightWithEffect'
 // import { TrafficLightWithHook } from './03-customHook/TrafficLightWithHook'
@@ -20,6 +21,7 @@ createRoot(document.getElementById('root')!).render(
     {/* <TrafficLightWithHook /> */}
     {/* <PokemonPage /> */}
     {/* <FocusScreen /> */}
-    <TasksApp />
+    {/* <TasksApp /> */}
+    <ScrambleWords />
   </StrictMode>,
 )

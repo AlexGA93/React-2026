@@ -21,14 +21,14 @@ export interface TaskState {
 
 export type TaskAction =
   | {
-      type: typeof constants.REDUCER.ACTIONS.ADD_TODO;
+      type: typeof constants.REDUCER.TASKS.ACTIONS.ADD_TODO;
       payload: string;
     }
   | {
-      type: typeof constants.REDUCER.ACTIONS.TOGGLE_TODO;
+      type: typeof constants.REDUCER.TASKS.ACTIONS.TOGGLE_TODO;
       payload: number;
     }
   | {
-      type: typeof constants.REDUCER.ACTIONS.DELETE_TODO;
+      type: typeof constants.REDUCER.TASKS.ACTIONS.DELETE_TODO;
       payload: number;
     };

@@ -30,7 +30,7 @@ export const taskReducer = (
 ): TaskState => {
   // reaccionamos en funcion del tipo de accion
   switch (action.type) {
-    case constants.REDUCER.ACTIONS.ADD_TODO:
+    case constants.REDUCER.TASKS.ACTIONS.ADD_TODO:
       // conformamos nueva tarea
       const newTodo: Todo = {
         id: Date.now(),
@@ -48,7 +48,7 @@ export const taskReducer = (
         length: state.todos.length + 1, // la longitud se incrementa por uno
         pending: state.pending + 1, // la longitud se incrementa por uno
       };
-    case constants.REDUCER.ACTIONS.TOGGLE_TODO:
+    case constants.REDUCER.TASKS.ACTIONS.TOGGLE_TODO:
       // actualizamos el parametro del todo cuyo id pasamos
       const updatedTodos = state.todos.map((todo) => {
         if (todo.id === action.payload) {
@@ -63,7 +63,7 @@ export const taskReducer = (
         completed: updatedTodos.filter((todo) => todo.completed).length, // calculamos de los nuevos todos el numero de aquellos que esten completos
         pending: updatedTodos.filter((todo) => !todo.completed).length, // calculamos de los nuevos todos el numero de aquellos que NO esten completos
       };
-    case constants.REDUCER.ACTIONS.DELETE_TODO:
+    case constants.REDUCER.TASKS.ACTIONS.DELETE_TODO:
       const currentTodos = state.todos.filter(
         (todo) => todo.id !== action.payload,
       );
@@ -82,7 +82,7 @@ export const taskReducer = (
 
 // funcion que devuelve le estado inicial en elque no tenemos ninguna tarea registrada. Al ser constante la exportamos desde aqui para ser usada donde sea necesario
 export const getTasksInitialState = (): TaskState => {
-  const initialState = readFromLocalStorage(constants.REDUCER.STATE_FLAG);
+  const initialState = readFromLocalStorage(constants.REDUCER.TASKS.STATE_FLAG);
 
   if (!initialState) {
     return {
