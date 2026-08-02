@@ -3,10 +3,6 @@
 // https://ui.shadcn.com/docs/installation/vite
 
 import React, { useEffect, useReducer } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent } from "@/components/ui/card";
-import { SkipForward, Play } from "lucide-react";
 import { constants } from "@/utils/constants";
 import {
   getInitialState,
