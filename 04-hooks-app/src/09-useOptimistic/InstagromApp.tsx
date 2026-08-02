@@ -1,17 +1,22 @@
-import { useOptimistic, useState } from "react";
+import { useOptimistic, useState, useTransition } from "react";
+import { v4 as uuidv4 } from "uuid";
+import { toast } from "sonner";
 
 interface Comment {
-  id: number;
+  id: string;
   text: string;
   optimistic?: boolean;
 }
 
 export const InstagromApp = () => {
+  // declaramos el useTransition
+  const [isPending, startTransition] = useTransition();
+
   // Estado real de los comentarios. Aquí se guardan los datos que eventualmente
   // se persistirán en el backend.
   const [comments, setComments] = useState<Comment[]>([
-    { id: 1, text: "¡Gran foto!" },
-    { id: 2, text: "Me encanta 🧡" },
+    { id: uuidv4(), text: "¡Gran foto!" },
+    { id: uuidv4(), text: "Me encanta 🧡" },
   ]);
 
   // useOptimistic permite mostrar una versión provisional de la UI mientras
@@ -28,7 +33,7 @@ export const InstagromApp = () => {
       return [
         ...currentComments,
         {
-          id: new Date().getTime(),
+          id: uuidv4(),
           text: newCommentText,
           optimistic: true,
         },
@@ -37,26 +42,52 @@ export const InstagromApp = () => {
   );
 
   const handleAddComment = async (formData: FormData) => {
-    const messageTextByInput = formData.get("post-message") as string;
+    const messageTextByInput = (formData.get("post-message") as string).trim();
+
+    if (messageTextByInput.length === 0) return;
+
     console.log(messageTextByInput);
 
     // Añadimos el comentario de forma optimista para que la interfaz responda
     // al instante, aunque el guardado real aún no haya terminado.
     addOptimisticComment(messageTextByInput);
 
-    // Simulamos la latencia de la comunicación con el servidor.
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-    console.log("mensaje grabado");
+    // * transicion se lleva a cabo tan pronto como se declare el hook optimistic
+    // * movemos el contenido de ' llamada al backend' dentro del callback de la funcion
+    // * todo lo que se ejecute dentro no bloqueara el UI
+    startTransition(async () => {
+      // Simulamos la latencia de la comunicación con el servidor.
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+      console.log("mensaje grabado");
 
-    // Cuando termina la operación, actualizamos el estado real con el
-    // comentario definitivo.
-    setComments((prev) => [
-      ...prev,
-      {
-        id: new Date().getTime(),
-        text: messageTextByInput, // ! convendria validar con Zod ya que hemos tenido que machacar arriba como string, pero eso no deberiamos hacerlo
-      },
-    ]);
+      // Cuando termina la operación, actualizamos el estado real con el
+      // comentario definitivo.
+      // setComments((prev) => [
+      //   ...prev,
+      //   {
+      //     id: uuidv4(),
+      //     text: messageTextByInput, // ! convendria validar con Zod ya que hemos tenido que machacar arriba como string, pero eso no deberiamos hacerlo
+      //   },
+      // ]);
+
+      // ! Este seria el codigo para revertir el proceso
+      setComments((prev) => prev);
+      // mostramos toast de error
+      toast.error(
+        // message
+        "Error al agregar comentario",
+        // data
+        {
+          description: "Intente nuevamente",
+          duration: 10_000,
+          position: "bottom-right",
+          action: {
+            label: "Cerrar",
+            onClick: () => toast.dismiss(),
+          },
+        },
+      );
+    });
   };
 
   return (
@@ -102,7 +133,7 @@ export const InstagromApp = () => {
         />
         <button
           type="submit"
-          disabled={false}
+          disabled={isPending}
           className="bg-blue-500 text-white p-2 rounded-md w-full"
         >
           Enviar
