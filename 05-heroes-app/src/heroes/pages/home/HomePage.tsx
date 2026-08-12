@@ -1,16 +1,45 @@
-import { Heart } from "lucide-react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CustomJumbotrom } from "@/components/custom/CustomJumbotrom";
-import { HeroStats } from "@/heroes/components/HeroStats";
-import { HeroGrid } from "@/heroes/components/HeroGrid";
-import { useState } from "react";
-import { CustomPagination } from "@/components/custom/CustomPagination";
 import { CustomBreadcrumbs } from "@/components/custom/CustomBreadcrumbs";
+import { CustomJumbotrom } from "@/components/custom/CustomJumbotrom";
+import { CustomPagination } from "@/components/custom/CustomPagination";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { HeroGrid } from "@/heroes/components/HeroGrid";
+import { HeroStats } from "@/heroes/components/HeroStats";
+import { useHeroSummary } from "@/heroes/hooks/useHeroSummary";
+import { usePaginatedHero } from "@/heroes/hooks/usePaginatedHero";
+import { useQueryParameters } from "@/heroes/hooks/useQueryParameters";
+import { Heart } from "lucide-react";
 
-type ActiveTabsType = "all" | "favorites" | "heroes" | "villains";
-
+// type ActiveTabsType = "all" | "favorites" | "heroes" | "villains";
 export const HomePage = () => {
-  const [activeTab, setActiveTab] = useState<ActiveTabsType>("all");
+  const { page, limit, category, selectedTab, setSearchParams } =
+    useQueryParameters();
+
+  const handleSearchParams = (section: string, category: string = "all") => {
+    setSearchParams((prev) => {
+      prev.set("tab", section);
+      prev.set("category", category);
+      prev.set("page", "1");
+      // devolvemos el valor
+      return prev;
+    });
+  };
+
+  // const [activeTab, setActiveTab] = useState<ActiveTabsType>("all");
+  // ! No es recomendable usar esto porque en cada recarga del componente vamos a disparar el efectoi haciendo la/s peticion/es que ponga.
+  // useEffect(() => {
+  //   getHeroApiByPage().then((heroes) => {
+  //     console.log({ heroes });
+  //   });
+  // }, []);
+  // * SOLUCION: TANSTACK QUERY
+  const { data: heroesResponse } = usePaginatedHero({
+    page: +page,
+    limit: +limit,
+    category,
+  });
+
+  // accedemos al contenido de la peticion axios a /summary estrictamente tipada
+  const { data: summary } = useHeroSummary();
 
   return (
     <>
@@ -28,53 +57,56 @@ export const HomePage = () => {
         <HeroStats />
 
         {/* Tabs */}
-        <Tabs value={activeTab} className="mb-8">
+        <Tabs value={selectedTab} className="my-8">
           <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="all" onClick={() => setActiveTab("all")}>
-              All Characters (16)
+            <TabsTrigger value="all" onClick={() => handleSearchParams("all")}>
+              All Characters ({summary?.totalHeroes})
             </TabsTrigger>
             <TabsTrigger
               value="favorites"
-              onClick={() => setActiveTab("favorites")}
+              onClick={() => handleSearchParams("favorites")}
               className="flex items-center gap-2"
             >
               <Heart className="h-4 w-4" />
               Favorites (3)
             </TabsTrigger>
-            <TabsTrigger value="heroes" onClick={() => setActiveTab("heroes")}>
-              Heroes (12)
+            <TabsTrigger
+              value="heroes"
+              onClick={() => handleSearchParams("heroes", "hero")}
+            >
+              Heroes ({summary?.heroCount})
             </TabsTrigger>
             <TabsTrigger
               value="villains"
-              onClick={() => setActiveTab("villains")}
+              onClick={() => handleSearchParams("villains", "villain")}
             >
-              Villains (2)
+              Villains ({summary?.villainCount})
             </TabsTrigger>
           </TabsList>
           {/* Contenido de todos */}
           <TabsContent value="all">
             {/* Mostrar todos los personajes*/}
-            <HeroGrid />
+            <HeroGrid heroes={heroesResponse?.heroes ?? []} />
           </TabsContent>
           {/* Contenido de favoritos */}
           <TabsContent value="favorites">
             {/* Mostrar todos los personajes favoritos  */}
-            <HeroGrid />
+            <HeroGrid heroes={[]} />
           </TabsContent>
           {/* Heroes */}
           <TabsContent value="heroes">
             {/* Mostrar todos los heroes */}
-            <HeroGrid />
+            <HeroGrid heroes={heroesResponse?.heroes ?? []} />
           </TabsContent>
           {/* Villains */}
           <TabsContent value="villains">
             {/* Mostrar todos los villanos */}
-            <HeroGrid />
+            <HeroGrid heroes={heroesResponse?.heroes ?? []} />
           </TabsContent>
         </Tabs>
 
-        {/* Pagination */}
-        <CustomPagination totalPages={8} />
+        {/* Pagination - Buscamos paginar la url, no los heroes*/}
+        <CustomPagination totalPages={heroesResponse?.pages ?? 1} />
       </>
     </>
   );

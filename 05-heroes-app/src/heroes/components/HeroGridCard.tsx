@@ -3,32 +3,53 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Brain, Eye, Gauge, Heart, Shield, Zap } from "lucide-react";
+import { useNavigate } from "react-router";
+import type { Hero } from "../types/hero.interface";
 
-export const HeroGridCard = () => {
+interface Props {
+  hero: Hero;
+}
+
+export const HeroGridCard = ({ hero }: Props) => {
+  const navigate = useNavigate();
+
+  const handleClick = (heroSlug: string) => {
+    navigate(`/hero/${heroSlug}`);
+  };
+
   return (
     <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-linear-to-br from-white to-gray-50">
-      <div className="relative h-64 overflow-hidden">
+      <div className="relative h-64">
         <img
-          src="/placeholder.svg"
-          alt="Superman"
+          src={hero.image}
+          alt={hero.name}
           loading="lazy"
-          className="object-cover w-full h-full transition-all duration-500 group-hover:scale-110"
+          className="object-cover transition-all duration-500 group-hover:scale-110 absolute -top-10 w-full h-[410px] cursor-pointer"
+          onClick={() => handleClick(hero.slug)}
         />
 
         {/* Status indicator */}
         <div className="absolute top-3 left-3 flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-green-500" />
+          <div
+            className={`w-3 h-3 rounded-full ${
+              hero.status === "active" ? "bg-green-500" : "bg-red-500"
+            }`}
+          />
           <Badge
             variant="secondary"
             className="text-xs bg-white/90 text-gray-700"
           >
-            Active
+            {hero.status}
           </Badge>
         </div>
 
         {/* Universe badge */}
-        <Badge className="absolute top-3 right-3 text-xs bg-blue-600 text-white">
-          DC
+        <Badge
+          className={`absolute top-3 right-3 text-xs ${
+            hero.universe === "DC" ? "bg-blue-600" : "bg-red-600"
+          } text-white`}
+        >
+          {hero.universe}
         </Badge>
 
         {/* Favorite button */}
@@ -50,26 +71,23 @@ export const HeroGridCard = () => {
         </Button>
       </div>
 
-      <CardHeader className="pb-3">
+      <CardHeader className="py-3 z-10 bg-gray-100/50 backdrop-blur-sm relative top-1 group-hover:top-[-10px] transition-all duration-300">
         <div className="flex justify-between items-start">
           <div className="space-y-1">
-            <h3 className="font-bold text-lg leading-tight">Superman</h3>
-            <p className="text-sm text-gray-600">Clark Kent</p>
+            <h3 className="font-bold text-lg leading-tight">{hero.alias}</h3>
+            <p className="text-sm text-gray-600">{hero.name}</p>
           </div>
           <Badge className="text-xs bg-green-100 text-green-800 border-green-200">
-            Hero
+            {hero.category}
           </Badge>
         </div>
         <Badge variant="outline" className="w-fit text-xs">
-          Justice League
+          {hero.team}
         </Badge>
       </CardHeader>
 
       <CardContent className="space-y-4">
-        <p className="text-sm text-gray-600 line-clamp-2">
-          The Last Son of Krypton, protector of Earth and symbol of hope for all
-          humanity.
-        </p>
+        <p className="text-sm text-gray-600 line-clamp-2">{hero.description}</p>
 
         {/* Stats */}
         <div className="grid grid-cols-2 gap-3">
@@ -79,7 +97,7 @@ export const HeroGridCard = () => {
               <span className="text-xs font-medium">Strength</span>
             </div>
             <Progress
-              value={100}
+              value={hero.strength * 10}
               className="h-2"
               aria-label="Strength"
               activeColor="bg-orange-500"
@@ -91,7 +109,7 @@ export const HeroGridCard = () => {
               <span className="text-xs font-medium">Intelligence</span>
             </div>
             <Progress
-              value={80}
+              value={hero.intelligence * 10}
               className="h-2"
               aria-label="Intelligence"
               activeColor="bg-blue-500"
@@ -103,7 +121,7 @@ export const HeroGridCard = () => {
               <span className="text-xs font-medium">Speed</span>
             </div>
             <Progress
-              value={90}
+              value={hero.speed * 10}
               className="h-2"
               aria-label="Speed"
               activeColor="bg-green-500"
@@ -115,7 +133,7 @@ export const HeroGridCard = () => {
               <span className="text-xs font-medium">Durability</span>
             </div>
             <Progress
-              value={100}
+              value={hero.durability * 10}
               className="h-2"
               aria-label="Durability"
               activeColor="bg-purple-500"
@@ -127,20 +145,23 @@ export const HeroGridCard = () => {
         <div className="space-y-2">
           <h4 className="font-medium text-sm">Powers:</h4>
           <div className="flex flex-wrap gap-1">
-            <Badge variant="outline" className="text-xs">
-              Super Strength
-            </Badge>
-            <Badge variant="outline" className="text-xs">
-              Flight
-            </Badge>
-            <Badge variant="outline" className="text-xs bg-gray-100">
-              +4 more
-            </Badge>
+            {/* mostramos unicamente 3 integrantes del array */}
+            {hero.powers.slice(0, 3).map((power) => (
+              <Badge key={power} variant="outline" className="text-xs">
+                {power}
+              </Badge>
+            ))}
+            {/* SI hay mas, ponemos un badge con un texto fijo */}
+            {hero.powers.length > 3 && (
+              <Badge variant="outline" className="text-xs bg-gray-100">
+                +{hero.powers.length - 3} more
+              </Badge>
+            )}
           </div>
         </div>
 
         <div className="text-xs text-gray-500 pt-2 border-t">
-          First appeared: 1938
+          First appeared: {hero.firstAppearance}
         </div>
       </CardContent>
     </Card>

@@ -11,12 +11,12 @@ export const CustomMenu = () => {
   const { pathname } = useLocation();
 
   const isActive = (path: string) => {
-    console.log({ pathname, path });
+    // console.log({ pathname, path });
     return pathname === path;
   };
 
   return (
-    <NavigationMenu>
+    <NavigationMenu className="py-5">
       <NavigationMenuList>
         {/* Home */}
         <NavigationMenuItem>
