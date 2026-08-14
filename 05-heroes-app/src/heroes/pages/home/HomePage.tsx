@@ -4,13 +4,18 @@ import { CustomPagination } from "@/components/custom/CustomPagination";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { HeroGrid } from "@/heroes/components/HeroGrid";
 import { HeroStats } from "@/heroes/components/HeroStats";
+import { FavoriteHeroContext } from "@/heroes/context/FavoriteHeroContext";
 import { useHeroSummary } from "@/heroes/hooks/useHeroSummary";
 import { usePaginatedHero } from "@/heroes/hooks/usePaginatedHero";
 import { useQueryParameters } from "@/heroes/hooks/useQueryParameters";
 import { Heart } from "lucide-react";
+import { use } from "react";
 
 // type ActiveTabsType = "all" | "favorites" | "heroes" | "villains";
 export const HomePage = () => {
+  // * cosumimos el contexto mediante useCcontext ( o use() para versiones superiores)
+  const { favoriteCount, favorites } = use(FavoriteHeroContext);
+
   const { page, limit, category, selectedTab, setSearchParams } =
     useQueryParameters();
 
@@ -59,26 +64,32 @@ export const HomePage = () => {
         {/* Tabs */}
         <Tabs value={selectedTab} className="my-8">
           <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="all" onClick={() => handleSearchParams("all")}>
+            <TabsTrigger
+              value="all"
+              onClick={() => handleSearchParams("all")}
+              className="cursor-pointer"
+            >
               All Characters ({summary?.totalHeroes})
             </TabsTrigger>
             <TabsTrigger
               value="favorites"
               onClick={() => handleSearchParams("favorites")}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 cursor-pointer"
             >
               <Heart className="h-4 w-4" />
-              Favorites (3)
+              Favorites ({favoriteCount})
             </TabsTrigger>
             <TabsTrigger
               value="heroes"
               onClick={() => handleSearchParams("heroes", "hero")}
+              className="cursor-pointer"
             >
               Heroes ({summary?.heroCount})
             </TabsTrigger>
             <TabsTrigger
               value="villains"
               onClick={() => handleSearchParams("villains", "villain")}
+              className="cursor-pointer"
             >
               Villains ({summary?.villainCount})
             </TabsTrigger>
@@ -91,7 +102,7 @@ export const HomePage = () => {
           {/* Contenido de favoritos */}
           <TabsContent value="favorites">
             {/* Mostrar todos los personajes favoritos  */}
-            <HeroGrid heroes={[]} />
+            <HeroGrid heroes={favorites} />
           </TabsContent>
           {/* Heroes */}
           <TabsContent value="heroes">
@@ -104,9 +115,12 @@ export const HomePage = () => {
             <HeroGrid heroes={heroesResponse?.heroes ?? []} />
           </TabsContent>
         </Tabs>
-
-        {/* Pagination - Buscamos paginar la url, no los heroes*/}
-        <CustomPagination totalPages={heroesResponse?.pages ?? 1} />
+        {selectedTab !== "favorites" && (
+          <>
+            {/* Pagination - Buscamos paginar la url, no los heroes*/}
+            <CustomPagination totalPages={heroesResponse?.pages ?? 1} />
+          </>
+        )}
       </>
     </>
   );

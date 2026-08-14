@@ -3,7 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Brain, Eye, Gauge, Heart, Shield, Zap } from "lucide-react";
+import { use } from "react";
 import { useNavigate } from "react-router";
+import { FavoriteHeroContext } from "../context/FavoriteHeroContext";
 import type { Hero } from "../types/hero.interface";
 
 interface Props {
@@ -12,10 +14,17 @@ interface Props {
 
 export const HeroGridCard = ({ hero }: Props) => {
   const navigate = useNavigate();
-
+  // * cosumimos el contexto mediante useCcontext ( o use() para versiones superiores)
+  const { isFavorite, toggleFavorite } = use(FavoriteHeroContext);
+  // console.log({ data: isFavorite(hero) });
   const handleClick = (heroSlug: string) => {
     navigate(`/hero/${heroSlug}`);
   };
+
+  const handleClass = (heroCategory: string) =>
+    heroCategory === "Hero"
+      ? "bg-green-100 text-green-800 border-green-200"
+      : "bg-red-100 text-red-800 border-red-200";
 
   return (
     <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-linear-to-br from-white to-gray-50">
@@ -57,8 +66,15 @@ export const HeroGridCard = ({ hero }: Props) => {
           size="sm"
           variant="ghost"
           className="absolute bottom-3 right-3 bg-white/90 hover:bg-white"
+          onClick={() => toggleFavorite(hero)}
         >
-          <Heart className="h-4 w-4 fill-red-500 text-red-500" />
+          <Heart
+            className={`h-4 w-4 ${
+              isFavorite(hero)
+                ? "fill-red-500 text-red-500"
+                : "fill-gray-500 text-gray-500"
+            }`}
+          />
         </Button>
 
         {/* View details button */}
@@ -77,7 +93,7 @@ export const HeroGridCard = ({ hero }: Props) => {
             <h3 className="font-bold text-lg leading-tight">{hero.alias}</h3>
             <p className="text-sm text-gray-600">{hero.name}</p>
           </div>
-          <Badge className="text-xs bg-green-100 text-green-800 border-green-200">
+          <Badge className={`text-xs ${handleClass(hero.category)}`}>
             {hero.category}
           </Badge>
         </div>

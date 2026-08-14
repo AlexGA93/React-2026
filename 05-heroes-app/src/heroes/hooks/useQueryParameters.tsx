@@ -20,6 +20,9 @@ export const useQueryParameters = () => {
   const page = searchParams.get("page") ?? "1";
   const limit = searchParams.get("limit") ?? "10";
   const category = searchParams.get("category") ?? "all";
+  const name = searchParams.get("name") ?? "";
+  const accordion = searchParams.get("active-accordion") ?? "";
+  const strength = searchParams.get("strength") ?? "0";
 
   /**
    * useMemo se usa aquí para validar y normalizar el valor obtenido de la URL.
@@ -37,10 +40,15 @@ export const useQueryParameters = () => {
 
   return {
     // variables
+    searchParams,
+    activeTab,
     page,
     limit,
     category,
     selectedTab,
+    name,
+    accordion,
+    strength,
     // methods
     setSearchParams,
   };
