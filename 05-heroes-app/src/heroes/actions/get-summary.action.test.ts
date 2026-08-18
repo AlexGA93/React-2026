@@ -1,12 +1,14 @@
 import { describe, expect, test } from "vitest";
 import { getSummaryAction } from "./get-summary.action";
 
+// Definimos la "forma" que debe tener cada hero dentro del resumen.
+// expect.any(...) valida el tipo de dato, sin fijar un valor concreto.
 const heroShape = {
   id: expect.any(String),
   name: expect.any(String),
   slug: expect.any(String),
   alias: expect.any(String),
-  // dato espera un array el cual contiene strings
+  // powers debe ser un array, y dentro debe haber al menos un string.
   powers: expect.arrayContaining([expect.any(String)]),
   description: expect.any(String),
   strength: expect.any(Number),
@@ -21,9 +23,12 @@ const heroShape = {
   universe: expect.any(String),
 };
 
+// Mock del resumen completo. Aquí validamos solo la estructura y el tipo,
+// no el contenido exacto, porque la API puede devolver valores reales.
 const mockSummary = {
   totalHeroes: expect.any(Number),
-  // los datos se validaran como objetos que contienen la 'forma' definida
+  // strongestHero y smartestHero son del mismo tipo de objeto,
+  // por eso reutilizamos la misma definición mediante objectContaining.
   strongestHero: expect.objectContaining(heroShape),
   smartestHero: expect.objectContaining(heroShape),
   heroCount: expect.any(Number),
@@ -31,9 +36,13 @@ const mockSummary = {
 };
 
 describe("getSummaryAction", () => {
+  // Esta prueba verifica que la acción obtiene un resumen con la estructura
+  // esperada y que cada campo tiene el tipo correcto.
   test("should fetch summary and return complete information", async () => {
     const result = await getSummaryAction();
-    // console.log(result);
+
+    // toEqual + objectContaining permite comprobar que el resultado contiene
+    // al menos los campos esperados, sin depender de un objeto exacto.
     expect(result).toEqual(expect.objectContaining(mockSummary));
   });
 });
