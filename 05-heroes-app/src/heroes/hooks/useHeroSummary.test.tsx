@@ -38,7 +38,7 @@ describe("useHeroSummary", () => {
       wrapper: tanStackCustomProvider(),
     });
 
-    console.log(result.current);
+    // console.log(result.current);
 
     expect(result.current.isLoading).toBeTruthy();
     expect(result.current.isError).toBeFalsy();
@@ -58,7 +58,7 @@ describe("useHeroSummary", () => {
     // waitFor espera a que la UI/hook llegue al estado que queremos comprobar.
     await waitFor(() => {
       expect(result.current.isSuccess).toBeTruthy();
-      console.log(result.current);
+      // console.log(result.current);
     });
 
     // Verificamos que el hook ya no está cargando, no ha fallado y devuelve
@@ -66,5 +66,31 @@ describe("useHeroSummary", () => {
     expect(result.current.isLoading).toBeFalsy();
     expect(result.current.isError).toBeFalsy();
     expect(result.current.data).toStrictEqual(mockHeroSummary);
+  });
+
+  // ! CASO DE FALLO DE LA ACCION
+  test("should return error state when API call fails ", async () => {
+    // * 1. Definimos un error a evaluar
+    const errorMessage = "Failded to fetch summary";
+    const mockError = new Error(errorMessage);
+    // * 2. Implementamos el error dentro de la accion mockeada
+    mockGetSummaryAction.mockRejectedValue(mockError);
+    // * 3. Montamos el custom hook habiendo especificado que la accion devolvera u nfallo
+    const { result } = renderHook(() => useHeroSummary(), {
+      wrapper: tanStackCustomProvider(),
+    });
+    // * 4. Esperamos a que el estado cambie
+    await waitFor(() => {
+      expect(result.current.isError).toBeTruthy();
+      // console.log(result.current);
+    });
+
+    console.log(result);
+
+    // pruebas
+    expect(result.current.error).toBeDefined(); // esperamos que la accion devuelva contenido dentro del campo error
+    expect(result.current.isLoading).toBe(false); // esperamos que no este en estado de carga. No debe estar en periodo de carga
+    expect(mockGetSummaryAction).toHaveBeenCalled(); // aseguramos que la accion haya sido llamada
+    expect(result.current.error?.message).toBe(errorMessage); // aseguramos que el mensaje de error sea el esperado
   });
 });

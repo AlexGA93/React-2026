@@ -40,9 +40,10 @@ describe("getSummaryAction", () => {
   // esperada y que cada campo tiene el tipo correcto.
   test("should fetch summary and return complete information", async () => {
     const result = await getSummaryAction();
-
+    // console.log(result);
+    // console.log(expect.objectContaining(mockSummary));
     // toEqual + objectContaining permite comprobar que el resultado contiene
     // al menos los campos esperados, sin depender de un objeto exacto.
-    expect(result).toEqual(expect.objectContaining(mockSummary));
+    expect(result).toEqual(mockSummary);
   });
 });

@@ -5,7 +5,7 @@ const BASE_URL = import.meta.env.VITE_API_URL;
 export const mockHeroes: Hero[] = [
   {
     id: "1",
-    name: "Clark Kent",
+    name: "Clark Kent - Test",
     slug: "clark-kent",
     alias: "Superman",
     powers: ["Power 1", "Power 2", "Power 3"],
