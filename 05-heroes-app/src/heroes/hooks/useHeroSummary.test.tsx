@@ -85,7 +85,7 @@ describe("useHeroSummary", () => {
       // console.log(result.current);
     });
 
-    console.log(result);
+    // console.log(result);
 
     // pruebas
     expect(result.current.error).toBeDefined(); // esperamos que la accion devuelva contenido dentro del campo error
