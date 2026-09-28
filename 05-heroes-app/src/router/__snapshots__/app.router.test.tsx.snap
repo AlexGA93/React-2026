@@ -1,0 +1,58 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`appRouter > should be configured as expected 1`] = `
+[
+  {
+    "children": [
+      {
+        "element": <HomePage />,
+        "id": "0-0",
+        "index": true,
+      },
+      {
+        "children": undefined,
+        "element": <UNDEFINED />,
+        "id": "0-1",
+        "path": "/hero/:slug",
+      },
+      {
+        "children": undefined,
+        "element": <UNDEFINED />,
+        "id": "0-2",
+        "path": "/search",
+      },
+      {
+        "children": undefined,
+        "element": <Navigate
+          to="/"
+        />,
+        "id": "0-3",
+        "path": "*",
+      },
+    ],
+    "element": <HeroesLayout />,
+    "id": "0",
+    "path": "/",
+  },
+  {
+    "children": [
+      {
+        "element": <UNDEFINED />,
+        "id": "1-0",
+        "index": true,
+      },
+    ],
+    "element": <AdminLayout />,
+    "id": "1",
+    "path": "/admin",
+  },
+  {
+    "children": undefined,
+    "element": <Navigate
+      to="/"
+    />,
+    "id": "2",
+    "path": "*",
+  },
+]
+`;
