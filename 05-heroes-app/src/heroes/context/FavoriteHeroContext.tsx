@@ -77,6 +77,7 @@ const getFavoritesFromLocalStorage = (): Hero[] => {
   }
 };
 
+// * High Order Component
 // componente provider del context
 export const FavoriteHeroProvider = ({ children }: PropsWithChildren) => {
   // guardamos el estado local para favoritos

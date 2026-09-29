@@ -47,10 +47,16 @@ export const HeroStats = () => {
         ) : (
           <>
             {/* childs */}
-            <div className="text-2xl font-bold text-red-600">
+            <div
+              className="text-2xl font-bold text-red-600"
+              data-testid="favorite-count"
+            >
               {favoriteCount}
             </div>
-            <p className="text-xs text-muted-foreground">
+            <p
+              className="text-xs text-muted-foreground"
+              data-testid="favorite-percentage"
+            >
               {handleFavoritesPercentage}% of total
             </p>
           </>

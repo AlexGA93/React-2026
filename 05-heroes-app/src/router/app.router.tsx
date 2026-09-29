@@ -1,8 +1,8 @@
 import { HeroesLayout } from "@/heroes/layout/HeroesLayout";
 // import { SearchPage } from "@/heroes/pages/search/SearchPage";
 // import { HeroPage } from "@/heroes/pages/hero/HeroPage";
-import { HomePage } from "@/heroes/pages/home/HomePage";
 import { AdminLayout } from "@/admin/layout/AdminLayout";
+import { HomePage } from "@/heroes/pages/home/HomePage";
 // import { AdminPage } from "@/admin/pages/AdminPage";
 import { lazy } from "react";
 import { createBrowserRouter, Navigate } from "react-router";
@@ -17,7 +17,6 @@ import { createBrowserRouter, Navigate } from "react-router";
 // const HomePage = lazy(() => import("@/heroes/pages/home/HomePage"));
 const HeroPage = lazy(() => import("@/heroes/pages/hero/HeroPage"));
 const SearchPage = lazy(() => import("@/heroes/pages/search/SearchPage"));
-
 const AdminPage = lazy(() => import("@/admin/pages/AdminPage"));
 
 export const appRouter = createBrowserRouter([
