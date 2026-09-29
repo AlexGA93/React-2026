@@ -6,9 +6,11 @@ import { MemoryRouter } from "react-router";
 import { describe, expect, test, vi } from "vitest";
 import HomePage from "./HomePage";
 
+// Se sustituye la consulta para probar qué argumentos construye HomePage sin acceder a datos reales.
 vi.mock("@/heroes/hooks/usePaginatedHero");
 
 const mockUsePaginatedHero = vi.mocked(usePaginatedHero);
+// Un resultado estable evita que los estados de carga o error afecten las pruebas de parámetros.
 mockUsePaginatedHero.mockReturnValue({
   data: [],
   isLoading: false,
@@ -16,6 +18,7 @@ mockUsePaginatedHero.mockReturnValue({
   isSuccess: true,
 } as unknown as ReturnType<typeof usePaginatedHero>);
 
+// HomePage consume React Query, el contexto de favoritos y los parámetros del router.
 const queryClient = new QueryClient();
 
 const renderHomePage = (initialEntries: string[] = ["/"]) => {
@@ -31,11 +34,13 @@ const renderHomePage = (initialEntries: string[] = ["/"]) => {
 };
 
 describe("HomePage", () => {
+  // El snapshot protege la estructura general de la página con valores iniciales.
   test("should render HomePage with default values", () => {
     const { container } = renderHomePage();
     expect(container).toMatchSnapshot();
   });
 
+  // Sin parámetros explícitos, la consulta debe usar categoría, límite y página predeterminados.
   test("should call usePaginatedHero with default values", () => {
     renderHomePage();
     expect(mockUsePaginatedHero).toHaveBeenCalledWith({
@@ -45,6 +50,7 @@ describe("HomePage", () => {
     });
   });
 
+  // Verifica que los criterios recibidos en la URL se conviertan a los tipos esperados por el hook.
   test("should call usePaginatedHero with custom query params", () => {
     renderHomePage(["/?page=2&limit=10&category=villains"]);
     expect(mockUsePaginatedHero).toHaveBeenCalledWith({
@@ -54,11 +60,11 @@ describe("HomePage", () => {
     });
   });
 
+  // Al cambiar de pestaña, la página se reinicia pero se conserva el límite de resultados.
   test("should called usePaginatedHero with default page and same limit on tab clicked", () => {
     renderHomePage(["/?tab=favorites&page=2&limit=10"]);
 
-    // const [allTabs, favoriteTab, heroesTab, villainsTab] = screen.getAllByRole('tab');
-
+    // Se selecciona la cuarta pestaña (Villains) para comprobar el cambio de categoría.
     const [, , , villainsTab] = screen.getAllByRole("tab");
 
     fireEvent.click(villainsTab);

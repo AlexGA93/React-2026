@@ -130,7 +130,12 @@ export const SearchControls = () => {
       </div>
 
       {/* Advanced Filters */}
-      <Accordion type="multiple" defaultValue={[accordion]} value={[accordion]}>
+      <Accordion
+        type="multiple"
+        data-testid="accordion"
+        defaultValue={[accordion]}
+        value={[accordion]}
+      >
         <AccordionItem value="advanced-filters">
           <AccordionContent>
             <div className="bg-white rounded-lg p-6 mb-8 shadow-sm border">
