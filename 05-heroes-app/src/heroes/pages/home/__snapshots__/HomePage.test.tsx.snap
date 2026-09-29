@@ -1,0 +1,521 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`HomePage > should render HomePage with default values 1`] = `
+<div>
+  <div
+    class="text-center mb-8"
+  >
+    <h1
+      class="text-5xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4"
+    >
+      Superhero Universe
+    </h1>
+    <p
+      class="text-gray-600 text-lg"
+    >
+      Discover, explore, and manage your favorite superheroes and villains
+    </p>
+  </div>
+  <nav
+    aria-label="breadcrumb"
+    class="my-5"
+    data-slot="breadcrumb"
+  >
+    <ol
+      class="flex flex-wrap items-center gap-1.5 text-sm break-words text-muted-foreground sm:gap-2.5"
+      data-slot="breadcrumb-list"
+    >
+      <li
+        class="inline-flex items-center gap-1.5"
+        data-slot="breadcrumb-item"
+      >
+        <a
+          class="transition-colors hover:text-foreground"
+          data-discover="true"
+          data-slot="breadcrumb-link"
+          href="/"
+        >
+          Home
+        </a>
+      </li>
+      <li
+        aria-hidden="true"
+        class="[&>svg]:size-3.5"
+        data-slot="breadcrumb-separator"
+        role="presentation"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-slash"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M22 2 2 22"
+          />
+        </svg>
+      </li>
+      <li
+        class="inline-flex items-center gap-1.5"
+        data-slot="breadcrumb-item"
+      >
+        <a
+          class="transition-colors hover:text-foreground text-black"
+          data-slot="breadcrumb-link"
+        >
+          Heroes
+        </a>
+      </li>
+    </ol>
+  </nav>
+  <div
+    class="grid grid-cols-2 md:grid-cols-4 gap-4 my-8"
+  >
+    <div
+      class="group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-xl bg-card py-(--card-spacing) text-sm text-card-foreground ring-1 ring-foreground/10 [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl"
+      data-size="default"
+      data-slot="card"
+    >
+      <div
+        class="group/card-header @container/card-header auto-rows-min gap-1 rounded-t-xl px-(--card-spacing) has-data-[slot=card-action]:grid-cols-[1fr_auto] has-data-[slot=card-description]:grid-rows-[auto_auto] [.border-b]:pb-(--card-spacing) flex flex-row items-center justify-between space-y-0 pb-2"
+        data-slot="card-header"
+      >
+        <div
+          class="font-heading group-data-[size=sm]/card:text-sm text-sm font-medium"
+          data-slot="card-title"
+        >
+          Total Characters
+        </div>
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-users h-4 w-4 text-muted-foreground"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"
+          />
+          <path
+            d="M16 3.128a4 4 0 0 1 0 7.744"
+          />
+          <path
+            d="M22 21v-2a4 4 0 0 0-3-3.87"
+          />
+          <circle
+            cx="9"
+            cy="7"
+            r="4"
+          />
+        </svg>
+      </div>
+      <div
+        class="px-(--card-spacing)"
+        data-slot="card-content"
+      >
+        <div
+          class="text-2xl font-bold"
+        />
+        <div
+          class="flex gap-1 mt-2"
+        >
+          <span
+            class="group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-4xl border border-transparent px-2 py-0.5 font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&>svg]:pointer-events-none [&>svg]:size-3! bg-secondary text-secondary-foreground [a]:hover:bg-secondary/80 text-xs"
+            data-slot="badge"
+            data-variant="secondary"
+          >
+             Heroes
+          </span>
+          <span
+            class="group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-4xl border border-transparent px-2 py-0.5 font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&>svg]:pointer-events-none [&>svg]:size-3! bg-destructive/10 text-destructive focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:focus-visible:ring-destructive/40 [a]:hover:bg-destructive/20 text-xs"
+            data-slot="badge"
+            data-variant="destructive"
+          >
+             Villains
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-xl bg-card py-(--card-spacing) text-sm text-card-foreground ring-1 ring-foreground/10 [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl"
+      data-size="default"
+      data-slot="card"
+    >
+      <div
+        class="group/card-header @container/card-header auto-rows-min gap-1 rounded-t-xl px-(--card-spacing) has-data-[slot=card-action]:grid-cols-[1fr_auto] has-data-[slot=card-description]:grid-rows-[auto_auto] [.border-b]:pb-(--card-spacing) flex flex-row items-center justify-between space-y-0 pb-2"
+        data-slot="card-header"
+      >
+        <div
+          class="font-heading group-data-[size=sm]/card:text-sm text-sm font-medium"
+          data-slot="card-title"
+        >
+          Favorites
+        </div>
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-heart h-4 w-4 text-muted-foreground"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"
+          />
+        </svg>
+      </div>
+      <div
+        class="px-(--card-spacing)"
+        data-slot="card-content"
+      >
+        <div
+          class="flex min-h-screen items-center justify-center bg-slate-950/5 px-4"
+        >
+          <div
+            aria-live="polite"
+            class="flex flex-col items-center gap-4 rounded-2xl border border-slate-200 bg-white px-8 py-6 shadow-sm dark:border-slate-800 dark:bg-slate-950"
+            role="status"
+          >
+            <svg
+              aria-label="Loading"
+              class="lucide lucide-loader-circle size-4 animate-spin h-10 w-10 text-primary"
+              fill="none"
+              height="24"
+              role="status"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M21 12a9 9 0 1 1-6.219-8.56"
+              />
+            </svg>
+            <p
+              class="text-sm font-medium text-slate-600 dark:text-slate-300"
+            >
+              Cargando...
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-xl bg-card py-(--card-spacing) text-sm text-card-foreground ring-1 ring-foreground/10 [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl"
+      data-size="default"
+      data-slot="card"
+    >
+      <div
+        class="group/card-header @container/card-header auto-rows-min gap-1 rounded-t-xl px-(--card-spacing) has-data-[slot=card-action]:grid-cols-[1fr_auto] has-data-[slot=card-description]:grid-rows-[auto_auto] [.border-b]:pb-(--card-spacing) flex flex-row items-center justify-between space-y-0 pb-2"
+        data-slot="card-header"
+      >
+        <div
+          class="font-heading group-data-[size=sm]/card:text-sm text-sm font-medium"
+          data-slot="card-title"
+        >
+          Strongest
+        </div>
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-zap h-4 w-4 text-muted-foreground"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z"
+          />
+        </svg>
+      </div>
+      <div
+        class="px-(--card-spacing)"
+        data-slot="card-content"
+      >
+        <div
+          class="text-lg font-bold"
+        />
+        <p
+          class="text-xs text-muted-foreground"
+        >
+          Strength: 
+          /10
+        </p>
+      </div>
+    </div>
+    <div
+      class="group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-xl bg-card py-(--card-spacing) text-sm text-card-foreground ring-1 ring-foreground/10 [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl"
+      data-size="default"
+      data-slot="card"
+    >
+      <div
+        class="group/card-header @container/card-header auto-rows-min gap-1 rounded-t-xl px-(--card-spacing) has-data-[slot=card-action]:grid-cols-[1fr_auto] has-data-[slot=card-description]:grid-rows-[auto_auto] [.border-b]:pb-(--card-spacing) flex flex-row items-center justify-between space-y-0 pb-2"
+        data-slot="card-header"
+      >
+        <div
+          class="font-heading group-data-[size=sm]/card:text-sm text-sm font-medium"
+          data-slot="card-title"
+        >
+          Inteligence
+        </div>
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-brain h-4 w-4 text-muted-foreground"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 18V5"
+          />
+          <path
+            d="M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4"
+          />
+          <path
+            d="M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5"
+          />
+          <path
+            d="M17.997 5.125a4 4 0 0 1 2.526 5.77"
+          />
+          <path
+            d="M18 18a4 4 0 0 0 2-7.464"
+          />
+          <path
+            d="M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517"
+          />
+          <path
+            d="M6 18a4 4 0 0 1-2-7.464"
+          />
+          <path
+            d="M6.003 5.125a4 4 0 0 0-2.526 5.77"
+          />
+        </svg>
+      </div>
+      <div
+        class="px-(--card-spacing)"
+        data-slot="card-content"
+      >
+        <div
+          class="text-lg font-bold"
+        />
+        <p
+          class="text-xs text-muted-foreground"
+        >
+          Inteligence: 
+          /10
+        </p>
+      </div>
+    </div>
+  </div>
+  <div
+    class="group/tabs flex gap-2 data-horizontal:flex-col my-8"
+    data-activation-direction="none"
+    data-orientation="horizontal"
+    data-slot="tabs"
+  >
+    <div
+      class="group/tabs-list items-center justify-center rounded-lg p-[3px] text-muted-foreground group-data-horizontal/tabs:h-8 group-data-vertical/tabs:h-fit group-data-vertical/tabs:flex-col data-[variant=line]:rounded-none bg-muted grid w-full grid-cols-4"
+      data-activation-direction="none"
+      data-orientation="horizontal"
+      data-slot="tabs-list"
+      data-variant="default"
+      role="tablist"
+    >
+      <button
+        aria-controls="base-ui-_r_4_"
+        aria-disabled="false"
+        aria-selected="true"
+        class="relative inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium whitespace-nowrap text-foreground/60 transition-all group-data-vertical/tabs:w-full group-data-vertical/tabs:justify-start hover:text-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-50 has-data-[icon=inline-end]:pr-1 has-data-[icon=inline-start]:pl-1 aria-disabled:pointer-events-none aria-disabled:opacity-50 dark:text-muted-foreground dark:hover:text-foreground group-data-[variant=default]/tabs-list:data-active:shadow-sm group-data-[variant=line]/tabs-list:data-active:shadow-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 group-data-[variant=line]/tabs-list:bg-transparent group-data-[variant=line]/tabs-list:data-active:bg-transparent dark:group-data-[variant=line]/tabs-list:data-active:border-transparent dark:group-data-[variant=line]/tabs-list:data-active:bg-transparent data-active:bg-background data-active:text-foreground dark:data-active:border-input dark:data-active:bg-input/30 dark:data-active:text-foreground after:absolute after:bg-foreground after:opacity-0 after:transition-opacity group-data-horizontal/tabs:after:inset-x-0 group-data-horizontal/tabs:after:bottom-[-5px] group-data-horizontal/tabs:after:h-0.5 group-data-vertical/tabs:after:inset-y-0 group-data-vertical/tabs:after:-right-1 group-data-vertical/tabs:after:w-0.5 group-data-[variant=line]/tabs-list:data-active:after:opacity-100 cursor-pointer"
+        data-activation-direction="none"
+        data-active=""
+        data-composite-item-active=""
+        data-orientation="horizontal"
+        data-slot="tabs-trigger"
+        id="base-ui-_r_0_"
+        role="tab"
+        tabindex="0"
+        type="button"
+      >
+        All Characters (
+        )
+      </button>
+      <button
+        aria-disabled="false"
+        aria-selected="false"
+        class="relative h-[calc(100%-1px)] flex-1 justify-center rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium whitespace-nowrap text-foreground/60 transition-all group-data-vertical/tabs:w-full group-data-vertical/tabs:justify-start hover:text-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-50 has-data-[icon=inline-end]:pr-1 has-data-[icon=inline-start]:pl-1 aria-disabled:pointer-events-none aria-disabled:opacity-50 dark:text-muted-foreground dark:hover:text-foreground group-data-[variant=default]/tabs-list:data-active:shadow-sm group-data-[variant=line]/tabs-list:data-active:shadow-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 group-data-[variant=line]/tabs-list:bg-transparent group-data-[variant=line]/tabs-list:data-active:bg-transparent dark:group-data-[variant=line]/tabs-list:data-active:border-transparent dark:group-data-[variant=line]/tabs-list:data-active:bg-transparent data-active:bg-background data-active:text-foreground dark:data-active:border-input dark:data-active:bg-input/30 dark:data-active:text-foreground after:absolute after:bg-foreground after:opacity-0 after:transition-opacity group-data-horizontal/tabs:after:inset-x-0 group-data-horizontal/tabs:after:bottom-[-5px] group-data-horizontal/tabs:after:h-0.5 group-data-vertical/tabs:after:inset-y-0 group-data-vertical/tabs:after:-right-1 group-data-vertical/tabs:after:w-0.5 group-data-[variant=line]/tabs-list:data-active:after:opacity-100 flex items-center gap-2 cursor-pointer"
+        data-activation-direction="none"
+        data-orientation="horizontal"
+        data-slot="tabs-trigger"
+        id="base-ui-_r_1_"
+        role="tab"
+        tabindex="-1"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-heart h-4 w-4"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"
+          />
+        </svg>
+        Favorites (
+        0
+        )
+      </button>
+      <button
+        aria-disabled="false"
+        aria-selected="false"
+        class="relative inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium whitespace-nowrap text-foreground/60 transition-all group-data-vertical/tabs:w-full group-data-vertical/tabs:justify-start hover:text-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-50 has-data-[icon=inline-end]:pr-1 has-data-[icon=inline-start]:pl-1 aria-disabled:pointer-events-none aria-disabled:opacity-50 dark:text-muted-foreground dark:hover:text-foreground group-data-[variant=default]/tabs-list:data-active:shadow-sm group-data-[variant=line]/tabs-list:data-active:shadow-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 group-data-[variant=line]/tabs-list:bg-transparent group-data-[variant=line]/tabs-list:data-active:bg-transparent dark:group-data-[variant=line]/tabs-list:data-active:border-transparent dark:group-data-[variant=line]/tabs-list:data-active:bg-transparent data-active:bg-background data-active:text-foreground dark:data-active:border-input dark:data-active:bg-input/30 dark:data-active:text-foreground after:absolute after:bg-foreground after:opacity-0 after:transition-opacity group-data-horizontal/tabs:after:inset-x-0 group-data-horizontal/tabs:after:bottom-[-5px] group-data-horizontal/tabs:after:h-0.5 group-data-vertical/tabs:after:inset-y-0 group-data-vertical/tabs:after:-right-1 group-data-vertical/tabs:after:w-0.5 group-data-[variant=line]/tabs-list:data-active:after:opacity-100 cursor-pointer"
+        data-activation-direction="none"
+        data-orientation="horizontal"
+        data-slot="tabs-trigger"
+        id="base-ui-_r_2_"
+        role="tab"
+        tabindex="-1"
+        type="button"
+      >
+        Heroes (
+        )
+      </button>
+      <button
+        aria-disabled="false"
+        aria-selected="false"
+        class="relative inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium whitespace-nowrap text-foreground/60 transition-all group-data-vertical/tabs:w-full group-data-vertical/tabs:justify-start hover:text-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-50 has-data-[icon=inline-end]:pr-1 has-data-[icon=inline-start]:pl-1 aria-disabled:pointer-events-none aria-disabled:opacity-50 dark:text-muted-foreground dark:hover:text-foreground group-data-[variant=default]/tabs-list:data-active:shadow-sm group-data-[variant=line]/tabs-list:data-active:shadow-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 group-data-[variant=line]/tabs-list:bg-transparent group-data-[variant=line]/tabs-list:data-active:bg-transparent dark:group-data-[variant=line]/tabs-list:data-active:border-transparent dark:group-data-[variant=line]/tabs-list:data-active:bg-transparent data-active:bg-background data-active:text-foreground dark:data-active:border-input dark:data-active:bg-input/30 dark:data-active:text-foreground after:absolute after:bg-foreground after:opacity-0 after:transition-opacity group-data-horizontal/tabs:after:inset-x-0 group-data-horizontal/tabs:after:bottom-[-5px] group-data-horizontal/tabs:after:h-0.5 group-data-vertical/tabs:after:inset-y-0 group-data-vertical/tabs:after:-right-1 group-data-vertical/tabs:after:w-0.5 group-data-[variant=line]/tabs-list:data-active:after:opacity-100 cursor-pointer"
+        data-activation-direction="none"
+        data-orientation="horizontal"
+        data-slot="tabs-trigger"
+        id="base-ui-_r_3_"
+        role="tab"
+        tabindex="-1"
+        type="button"
+      >
+        Villains (
+        )
+      </button>
+    </div>
+    <div
+      aria-labelledby="base-ui-_r_0_"
+      class="flex-1 text-sm outline-none"
+      data-activation-direction="none"
+      data-index="0"
+      data-orientation="horizontal"
+      data-slot="tabs-content"
+      id="base-ui-_r_4_"
+      role="tabpanel"
+      tabindex="0"
+    >
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-8"
+      />
+    </div>
+  </div>
+  <div
+    class="flex items-center justify-center space-x-2"
+  >
+    <button
+      class="group/button cursor-pointer inline-flex shrink-0 items-center justify-center border bg-clip-padding font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50 h-7 gap-1 rounded-[min(var(--radius-md),12px)] px-2.5 text-[0.8rem] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5"
+      data-disabled=""
+      data-slot="button"
+      disabled=""
+      tabindex="0"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-chevron-left h-4 w-4"
+        fill="none"
+        height="24"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="m15 18-6-6 6-6"
+        />
+      </svg>
+      Previous
+    </button>
+    <button
+      class="group/button cursor-pointer inline-flex shrink-0 items-center justify-center border border-transparent bg-clip-padding font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/80 h-7 gap-1 rounded-[min(var(--radius-md),12px)] px-2.5 text-[0.8rem] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5"
+      data-slot="button"
+      tabindex="0"
+      type="button"
+    >
+      1
+    </button>
+    <button
+      class="group/button cursor-pointer inline-flex shrink-0 items-center justify-center border bg-clip-padding font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50 h-7 gap-1 rounded-[min(var(--radius-md),12px)] px-2.5 text-[0.8rem] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5"
+      data-disabled=""
+      data-slot="button"
+      disabled=""
+      tabindex="0"
+      type="button"
+    >
+      Next
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-chevron-right h-4 w-4"
+        fill="none"
+        height="24"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="m9 18 6-6-6-6"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;

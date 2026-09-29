@@ -1,0 +1,260 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`HeroStats > should render HeroStats with mock information 1`] = `
+<div>
+  <div
+    class="grid grid-cols-2 md:grid-cols-4 gap-4 my-8"
+  >
+    <div
+      class="group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-xl bg-card py-(--card-spacing) text-sm text-card-foreground ring-1 ring-foreground/10 [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl"
+      data-size="default"
+      data-slot="card"
+    >
+      <div
+        class="group/card-header @container/card-header auto-rows-min gap-1 rounded-t-xl px-(--card-spacing) has-data-[slot=card-action]:grid-cols-[1fr_auto] has-data-[slot=card-description]:grid-rows-[auto_auto] [.border-b]:pb-(--card-spacing) flex flex-row items-center justify-between space-y-0 pb-2"
+        data-slot="card-header"
+      >
+        <div
+          class="font-heading group-data-[size=sm]/card:text-sm text-sm font-medium"
+          data-slot="card-title"
+        >
+          Total Characters
+        </div>
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-users h-4 w-4 text-muted-foreground"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"
+          />
+          <path
+            d="M16 3.128a4 4 0 0 1 0 7.744"
+          />
+          <path
+            d="M22 21v-2a4 4 0 0 0-3-3.87"
+          />
+          <circle
+            cx="9"
+            cy="7"
+            r="4"
+          />
+        </svg>
+      </div>
+      <div
+        class="px-(--card-spacing)"
+        data-slot="card-content"
+      >
+        <div
+          class="text-2xl font-bold"
+        >
+          25
+        </div>
+        <div
+          class="flex gap-1 mt-2"
+        >
+          <span
+            class="group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-4xl border border-transparent px-2 py-0.5 font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&>svg]:pointer-events-none [&>svg]:size-3! bg-secondary text-secondary-foreground [a]:hover:bg-secondary/80 text-xs"
+            data-slot="badge"
+            data-variant="secondary"
+          >
+            18
+             Heroes
+          </span>
+          <span
+            class="group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-4xl border border-transparent px-2 py-0.5 font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&>svg]:pointer-events-none [&>svg]:size-3! bg-destructive/10 text-destructive focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:focus-visible:ring-destructive/40 [a]:hover:bg-destructive/20 text-xs"
+            data-slot="badge"
+            data-variant="destructive"
+          >
+            7
+             Villains
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-xl bg-card py-(--card-spacing) text-sm text-card-foreground ring-1 ring-foreground/10 [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl"
+      data-size="default"
+      data-slot="card"
+    >
+      <div
+        class="group/card-header @container/card-header auto-rows-min gap-1 rounded-t-xl px-(--card-spacing) has-data-[slot=card-action]:grid-cols-[1fr_auto] has-data-[slot=card-description]:grid-rows-[auto_auto] [.border-b]:pb-(--card-spacing) flex flex-row items-center justify-between space-y-0 pb-2"
+        data-slot="card-header"
+      >
+        <div
+          class="font-heading group-data-[size=sm]/card:text-sm text-sm font-medium"
+          data-slot="card-title"
+        >
+          Favorites
+        </div>
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-heart h-4 w-4 text-muted-foreground"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"
+          />
+        </svg>
+      </div>
+      <div
+        class="px-(--card-spacing)"
+        data-slot="card-content"
+      >
+        <div
+          class="text-2xl font-bold text-red-600"
+          data-testid="favorite-count"
+        >
+          0
+        </div>
+        <p
+          class="text-xs text-muted-foreground"
+          data-testid="favorite-percentage"
+        >
+          0
+          % of total
+        </p>
+      </div>
+    </div>
+    <div
+      class="group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-xl bg-card py-(--card-spacing) text-sm text-card-foreground ring-1 ring-foreground/10 [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl"
+      data-size="default"
+      data-slot="card"
+    >
+      <div
+        class="group/card-header @container/card-header auto-rows-min gap-1 rounded-t-xl px-(--card-spacing) has-data-[slot=card-action]:grid-cols-[1fr_auto] has-data-[slot=card-description]:grid-rows-[auto_auto] [.border-b]:pb-(--card-spacing) flex flex-row items-center justify-between space-y-0 pb-2"
+        data-slot="card-header"
+      >
+        <div
+          class="font-heading group-data-[size=sm]/card:text-sm text-sm font-medium"
+          data-slot="card-title"
+        >
+          Strongest
+        </div>
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-zap h-4 w-4 text-muted-foreground"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z"
+          />
+        </svg>
+      </div>
+      <div
+        class="px-(--card-spacing)"
+        data-slot="card-content"
+      >
+        <div
+          class="text-lg font-bold"
+        >
+          Superman
+        </div>
+        <p
+          class="text-xs text-muted-foreground"
+        >
+          Strength: 
+          10
+          /10
+        </p>
+      </div>
+    </div>
+    <div
+      class="group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-xl bg-card py-(--card-spacing) text-sm text-card-foreground ring-1 ring-foreground/10 [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl"
+      data-size="default"
+      data-slot="card"
+    >
+      <div
+        class="group/card-header @container/card-header auto-rows-min gap-1 rounded-t-xl px-(--card-spacing) has-data-[slot=card-action]:grid-cols-[1fr_auto] has-data-[slot=card-description]:grid-rows-[auto_auto] [.border-b]:pb-(--card-spacing) flex flex-row items-center justify-between space-y-0 pb-2"
+        data-slot="card-header"
+      >
+        <div
+          class="font-heading group-data-[size=sm]/card:text-sm text-sm font-medium"
+          data-slot="card-title"
+        >
+          Inteligence
+        </div>
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-brain h-4 w-4 text-muted-foreground"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 18V5"
+          />
+          <path
+            d="M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4"
+          />
+          <path
+            d="M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5"
+          />
+          <path
+            d="M17.997 5.125a4 4 0 0 1 2.526 5.77"
+          />
+          <path
+            d="M18 18a4 4 0 0 0 2-7.464"
+          />
+          <path
+            d="M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517"
+          />
+          <path
+            d="M6 18a4 4 0 0 1-2-7.464"
+          />
+          <path
+            d="M6.003 5.125a4 4 0 0 0-2.526 5.77"
+          />
+        </svg>
+      </div>
+      <div
+        class="px-(--card-spacing)"
+        data-slot="card-content"
+      >
+        <div
+          class="text-lg font-bold"
+        >
+          Batman
+        </div>
+        <p
+          class="text-xs text-muted-foreground"
+        >
+          Inteligence: 
+          10
+          /10
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
