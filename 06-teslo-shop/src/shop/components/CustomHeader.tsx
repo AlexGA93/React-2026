@@ -6,11 +6,7 @@ import { Search } from "lucide-react";
 import { useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router";
 
-const genders: string[] = ["men", "women", "kid"];
-
 const CustomHeader = () => {
-  const [cartCount] = useState(3);
-
   // desestructuramos el gender del useParams
   const { gender } = useParams();
 

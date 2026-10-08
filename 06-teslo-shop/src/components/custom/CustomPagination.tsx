@@ -17,8 +17,8 @@ export const CustomPagination = ({ totalPages }: Props) => {
   const page = isNaN(+queryPage) ? 1 : +queryPage;
 
   // ! MERA INFORMACION PARA APRENDIZAJE
-  const colorValor = "color: #007bff; font-weight: bold;"; // Azul
-  const colorTexto = "color: #999999;"; // Gris para el texto normal
+  // const colorValor = "color: #007bff; font-weight: bold;"; // Azul
+  // const colorTexto = "color: #999999;"; // Gris para el texto normal
 
   //   console.log(
   //     `
