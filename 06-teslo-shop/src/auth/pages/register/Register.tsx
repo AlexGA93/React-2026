@@ -1,20 +1,72 @@
 // React.ComponentProps<"div"> reutiliza los atributos nativos de un div:
 // aporta autocompletado y validación estática, y permite pasar className,
 
+import { useAuthStore } from "@/auth/store/auth.store";
 import { CustomLogo } from "@/components/custom/CustomLogo";
 import { Button } from "@/components/ui/button";
+import { ButtonGroup } from "@/components/ui/button-group";
 import { Card, CardContent } from "@/components/ui/card";
+import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link } from "react-router";
+import { Spinner } from "@/components/ui/spinner";
+import { cn } from "cn";
+import { Lock, LockOpen } from "lucide-react";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router";
+import { toast } from "sonner";
 
 // eventos y otros atributos al elemento raíz sin definirlos manualmente.
 export const Register = () => {
+  const navigate = useNavigate();
+  const [isPosting, setIsPosting] = useState<boolean>(false);
+  const [showPass, setShowPAss] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
+  const { register } = useAuthStore();
+
+  const handleRegister = async (e: React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // actualizamos el estado local
+    setIsPosting(true);
+
+    // * tomamos de forma simple los datos del formulario
+    const formData = new FormData(e.target as HTMLFormElement);
+
+    const fullName = formData.get("fullName") as string;
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+    const password2 = formData.get("password2") as string;
+    console.log({ fullName, email, password, password2 });
+
+    if (password !== password2) {
+      setIsError(true);
+      setIsPosting(false);
+      toast.error("Las contraseña no son iguales");
+      return;
+    }
+    setIsError(false);
+
+    const isRegistered = await register({ fullName, email, password });
+
+    if (isRegistered) {
+      // * redireccionamos al home
+      navigate("/auth/login");
+      return;
+    }
+    // * mostramos error mediante herramienta Sonner
+    toast.error("Credenciales no validas");
+    setIsPosting(false);
+  };
+
+  const toggleShowPass = () => {
+    setShowPAss((prev) => !prev);
+  };
   return (
     <div className={"flex flex-col gap-6"}>
       <Card className="overflow-hidden p-0">
         <CardContent className="grid p-0 md:grid-cols-2">
-          <form className="p-6 md:p-8">
+          <form className="p-6 md:p-8" onSubmit={handleRegister}>
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-center text-center">
                 <CustomLogo />
@@ -23,10 +75,11 @@ export const Register = () => {
                 </p>
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="username">Nombre de usuario</Label>
+                <Label htmlFor="fullName">Nombre de usuario</Label>
                 <Input
-                  id="username"
-                  type="username"
+                  id="fullName"
+                  name="fullName"
+                  type="text"
                   placeholder="nombre de usuario"
                   required
                 />
@@ -35,30 +88,69 @@ export const Register = () => {
                 <Label htmlFor="email">Correo electrónico</Label>
                 <Input
                   id="email"
+                  name="email"
                   type="email"
                   placeholder="nombre@correo.com"
                   required
                 />
               </div>
               <div className="grid gap-2">
+                <Label htmlFor="password">Contraseña</Label>
                 <div className="flex items-center">
-                  <Label htmlFor="password">Contraseña</Label>
-                  <a
-                    href="#"
-                    className="ml-auto text-sm underline-offset-2 hover:underline"
-                  >
-                    ¿Has olvidado tu contraseña?
-                  </a>
+                  <Field>
+                    <ButtonGroup>
+                      <Input
+                        id="input-button-group"
+                        className={cn(
+                          "bg-gray-50",
+                          isError && "border-red-500",
+                        )}
+                        name="password"
+                        type={showPass ? "text" : "password"}
+                        placeholder="Contraseña..."
+                        required
+                      />
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={toggleShowPass}
+                      >
+                        {showPass ? <LockOpen /> : <Lock />}
+                      </Button>
+                    </ButtonGroup>
+                  </Field>
                 </div>
-                <Input
-                  id="password"
-                  type="password"
-                  required
-                  placeholder="Contraseña"
-                />
               </div>
-              <Button type="submit" className="w-full">
-                Iniciar sesión
+              <div className="grid gap-2">
+                <Label htmlFor="password">Repetir Contraseña</Label>
+                <div className="flex items-center">
+                  <Field>
+                    <ButtonGroup>
+                      <Input
+                        id="input-button-group"
+                        className={cn(
+                          "bg-gray-50",
+                          isError && "border-red-500",
+                        )}
+                        name="password2"
+                        type={showPass ? "text" : "password"}
+                        placeholder="Repetir Contraseña..."
+                        required
+                      />
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={toggleShowPass}
+                      >
+                        {showPass ? <LockOpen /> : <Lock />}
+                      </Button>
+                    </ButtonGroup>
+                  </Field>
+                </div>
+              </div>
+              <Button type="submit" className="w-full" disabled={isPosting}>
+                Registrarse
+                {isPosting && <Spinner />}
               </Button>
               <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
                 <span className="relative z-10 bg-background px-2 text-muted-foreground">

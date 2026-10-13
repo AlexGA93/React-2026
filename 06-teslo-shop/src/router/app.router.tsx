@@ -13,6 +13,7 @@ import { ProductPage } from "@/pages/product/ProductPage";
 // shop
 import { AdminProductPage } from "@/admin/pages/product/AdminProductPage";
 import { ShopLayout } from "@/shop/layouts/ShopLayout";
+import { AdminRoute, NoAuthenticatedRoute } from "./Protected/ProtectedRoutes";
 
 // * Declaramos el layout de autenticacion y administrativo como lazy (lazyload) debido a que no es necesario que se cargue hasta que el usuario acceda a el
 const AuthLayout = lazy(() => import("@/auth/layouts/AuthLayout"));
@@ -42,9 +43,14 @@ export const appRouter = createBrowserRouter([
     ],
   },
   // layout de autenticacion
+  // * llamamos y englobamos el layout con NoAuthenticatedRoute para que pasen aquellas que no sean autenticados (solo queremos accedewr a estas rutas si no estamos logueados)
   {
     path: "/auth",
-    element: <AuthLayout />,
+    element: (
+      <NoAuthenticatedRoute>
+        <AuthLayout />
+      </NoAuthenticatedRoute>
+    ),
     children: [
       // ruta hija login
       {
@@ -64,9 +70,14 @@ export const appRouter = createBrowserRouter([
     ],
   },
   // layout administrativo
+  // * autenticacion por rol - admin
   {
     path: "/admin",
-    element: <AdminLayout />,
+    element: (
+      <AdminRoute>
+        <AdminLayout />
+      </AdminRoute>
+    ),
     children: [
       // ruta hija por defecto dentro del layout
       {

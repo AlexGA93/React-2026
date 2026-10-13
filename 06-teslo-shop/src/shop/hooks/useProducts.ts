@@ -28,7 +28,6 @@ export const useProducts = () => {
   let minPrice = undefined;
   let maxPrice = undefined;
 
-  console.log(price);
   switch (price) {
     case "0-50":
       minPrice = 0;
@@ -39,7 +38,6 @@ export const useProducts = () => {
       maxPrice = 100;
       break;
     case "100-200":
-      console.log("-200");
       minPrice = 100;
       maxPrice = 200;
       break;

@@ -1,19 +1,58 @@
+import { useAuthStore } from "@/auth/store/auth.store";
 import { CustomLogo } from "@/components/custom/CustomLogo";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link } from "react-router";
+import { Spinner } from "@/components/ui/spinner";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router";
+import { toast } from "sonner";
 
 // React.ComponentProps<"div"> reutiliza los atributos nativos de un div:
 // aporta autocompletado y validación estática, y permite pasar className,
 // eventos y otros atributos al elemento raíz sin definirlos manualmente.
 export const Login = () => {
+  const navigate = useNavigate();
+
+  const [isPosting, setIsPosting] = useState<boolean>(false);
+
+  // * consumimos nuestro AuthStore de Zustand
+  const { login } = useAuthStore();
+
+  const handleLogin = async (e: React.SubmitEvent<HTMLFormElement>) => {
+    // evitamos propagacion
+    e.preventDefault();
+
+    // actualizamos el estado local
+    setIsPosting(true);
+
+    // * tomamos de forma simple los datos del formulario
+    const formData = new FormData(e.target as HTMLFormElement);
+    // formData tiene TODOS los campos que tengan el parametro `name`
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
+    // hacemos peticion mediante llamada a la accio nde nuestro store Zustand
+    const isLogged = await login({ email, password });
+
+    // reaccionamos al booleano respuesta del proceso
+    if (isLogged) {
+      // * redireccionamos al home
+      navigate("/");
+      return;
+    }
+    // * mostramos error mediante herramienta Sonner
+    toast.error("Credenciales no validas");
+
+    setIsPosting(false);
+  };
+
   return (
     <div className="flex flex-col gap-6">
       <Card className="overflow-hidden p-0">
         <CardContent className="grid p-0 md:grid-cols-2">
-          <form className="p-6 md:p-8">
+          <form className="p-6 md:p-8" onSubmit={handleLogin}>
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-center text-center">
                 <CustomLogo />
@@ -26,6 +65,7 @@ export const Login = () => {
                 <Input
                   id="email"
                   type="email"
+                  name="email"
                   placeholder="nombre@correo.com"
                   required
                 />
@@ -43,12 +83,14 @@ export const Login = () => {
                 <Input
                   id="password"
                   type="password"
+                  name="password"
                   required
                   placeholder="Contraseña"
                 />
               </div>
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full" disabled={isPosting}>
                 Iniciar sesión
+                {isPosting && <Spinner />}
               </Button>
               <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
                 <span className="relative z-10 bg-background px-2 text-muted-foreground">
