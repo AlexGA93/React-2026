@@ -1,4 +1,5 @@
 import { AdminTitle } from "@/admin/components/AdminTitle";
+import { CustomLoadingScreen } from "@/components/custom/CustomLoadingScreen";
 import { CustomPagination } from "@/components/custom/CustomPagination";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -12,14 +13,28 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { products } from "@/mocks/products.mock";
+import { currencyFormatter } from "@/lib/currencyFormatter";
+// import { products } from "@/mocks/products.mock";
+import { useProducts } from "@/shop/hooks/useProducts";
 import { PlusIcon } from "lucide-react";
 import { Link } from "react-router";
 
 export const AdminProductsPage = () => {
+  // llamamos al custom hook encargado de realizar la peticion de los productos
+  const { data, isLoading } = useProducts();
+  const products = data?.products || [];
+  const totalPages = data?.pages || 0;
+
+  if (isLoading) {
+    return <CustomLoadingScreen />;
+  }
+
   const calculateTotalPrice = () => {
     let total = 0;
-    products.map((product) => (total += product.price));
+    if (products.length > 0) {
+      products?.map((product) => (total += product.price));
+    }
+
     return total;
   };
 
@@ -45,7 +60,7 @@ export const AdminProductsPage = () => {
         <TableCaption>Lista de Productos.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead>ID</TableHead>
+            {/* <TableHead>ID</TableHead> */}
             <TableHead>Imagen</TableHead>
             <TableHead>Nombre</TableHead>
             <TableHead>Precio</TableHead>
@@ -58,20 +73,20 @@ export const AdminProductsPage = () => {
         <TableBody>
           {products.map((product) => (
             <TableRow key={product.id}>
-              <TableCell className="font-medium">{product.id}</TableCell>
+              {/* <TableCell className="font-medium">{product.id}</TableCell> */}
               <TableCell>
                 <img
-                  src={product.image}
-                  alt={`${product.name}_${product.id}`}
+                  src={product.images[0]}
+                  alt={`${product.title}_${product.id}`}
                   width={50}
                   height={50}
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
                 />
               </TableCell>
-              <TableCell>{product.name}</TableCell>
-              <TableCell>{product.price}</TableCell>
-              <TableCell>{product.category}</TableCell>
-              <TableCell>inventario</TableCell>
+              <TableCell>{product?.title}</TableCell>
+              <TableCell>{currencyFormatter(product.price)}</TableCell>
+              <TableCell>{product.gender}</TableCell>
+              <TableCell>{product.stock}</TableCell>
               <TableCell>
                 <div className="flex flex-wrap gap-1">
                   {product.sizes.map((size) => (
@@ -80,7 +95,7 @@ export const AdminProductsPage = () => {
                 </div>
               </TableCell>
               <TableCell className="text-right">
-                <Link to={product.to}>
+                <Link to={`/admin/products/${product.id}`}>
                   <Button variant="default" size="sm" className="ml-2">
                     Editar
                   </Button>
@@ -99,7 +114,7 @@ export const AdminProductsPage = () => {
         </TableFooter>
       </Table>
 
-      <CustomPagination totalPages={10} />
+      <CustomPagination totalPages={totalPages} />
     </>
   );
 };

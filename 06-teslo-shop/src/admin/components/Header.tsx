@@ -1,24 +1,73 @@
+import { Input } from "@/components/ui/input";
 import { Bell, MessageSquare, Search, Settings } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
+import { useSearchParams } from "react-router";
 
 const Header: React.FC = () => {
+  // * 1. sacamos los searchParams
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // * 2. extraemos el valor de la url almacenada
+  const adminSearchQuery = searchParams.get("query") || "";
+
+  // * 3. definimos el estado local para almacenar y gestionar la palabra
+  const [adminSearchDraft, setAdminSearchDraft] = useState({
+    query: adminSearchQuery,
+    value: adminSearchQuery,
+  });
+
+  // * 4. definimos variable que almacene el valor del cuadro de busqueda si coincide con el parametro - ASIGNAMOS AL ELEMENTO HTML
+  const adminSearchValue =
+    adminSearchDraft.query === adminSearchQuery
+      ? adminSearchDraft.value
+      : adminSearchQuery;
+
+  // * 5. Funcion que gestiona el cambio del estado en funcion de que escribe el usuario
+  const handleChangeDraft = (
+    e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>,
+  ) => {
+    // actualizamos el estado
+    setAdminSearchDraft({
+      query: adminSearchQuery,
+      value: e.target.value,
+    });
+  };
+
+  const handleSearchSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const newSearchParams = new URLSearchParams(searchParams);
+
+    if (!adminSearchValue) {
+      newSearchParams.delete("query");
+    } else {
+      newSearchParams.set("query", adminSearchValue);
+    }
+
+    setSearchParams(newSearchParams);
+  };
+
   return (
     <header className="bg-white border-b border-gray-200 px-6 py-4 h-18">
       <div className="flex items-center justify-between">
         {/* Search */}
-        <div className="flex-1 max-w-md">
-          <div className="relative">
-            <Search
-              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
-              size={20}
-            />
-            <input
-              type="text"
-              placeholder="Search..."
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-            />
+        <form onSubmit={handleSearchSubmit}>
+          <div className="flex-1 max-w-md">
+            <div className="relative">
+              <Search
+                className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                size={20}
+              />
+              <Input
+                type="text"
+                placeholder="Search..."
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                value={adminSearchValue}
+                onChange={(e) => handleChangeDraft(e)}
+              />
+            </div>
           </div>
-        </div>
+        </form>
 
         {/* Actions */}
         <div className="flex items-center space-x-4">

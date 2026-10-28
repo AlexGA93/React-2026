@@ -33,7 +33,7 @@ export const HeroGridCard = ({ hero }: Props) => {
           src={hero.image}
           alt={hero.name}
           loading="lazy"
-          className="object-cover transition-all duration-500 group-hover:scale-110 absolute -top-10 w-full h-[410px] cursor-pointer"
+          className="object-cover transition-all duration-500 group-hover:scale-110 absolute -top-10 w-full h-[410px] "
           onClick={() => handleClick(hero.slug)}
         />
 
